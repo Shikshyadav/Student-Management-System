@@ -14,16 +14,17 @@ public class DataInitializer {
     @Bean
     CommandLineRunner loadSampleData(UsersRepo usersRepo, PasswordEncoder passwordEncoder) {
         return args -> {
-            if(!usersRepo.existsByUsername("Admin")){
-            // Insert sample data on startup
-            Users users = new Users();
-            users.setUsername("Admin");
-            users.setPassword(passwordEncoder.encode("admin123"));
-            users.setActive(true);
 
-            usersRepo.save(users);
+            if (!usersRepo.existsByUsername("Admin")) {
 
-            System.out.println("Sample user created!");
+                Users users = new Users();
+                users.setUsername("Admin");
+                users.setPassword(passwordEncoder.encode("admin123"));
+                users.setActive(true);
+
+                usersRepo.save(users);
+
+                System.out.println("Sample user created!");
             }
         };
     }
