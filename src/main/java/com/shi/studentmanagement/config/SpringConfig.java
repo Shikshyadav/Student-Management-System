@@ -20,7 +20,7 @@ public class SpringConfig {
         "/error"
     };
 
-    
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
     {
         http.authorizeHttpRequests(auth -> auth

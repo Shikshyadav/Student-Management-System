@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(CsrfException.class)
     public String csrfExceptionHandler(CsrfException ex, RedirectAttributes redirectAttributes) {
-        log.warn("CSRF validation failed: {}", ex.getMessage());
+        log.warn("CSRF validation failed:", ex.getMessage());
         redirectAttributes.addFlashAttribute("message", "Session expired, please log in again.");
         return "redirect:/login";
     }
@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String genericExceptionHandler(Exception ex) {
-        log.error("Unexpected server error: {}", ex.getMessage());
+        log.error("Unexpected server error", ex);
         return "500";
     }
 }
